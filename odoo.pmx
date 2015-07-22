@@ -1,0 +1,27 @@
+---
+name: odoo
+description: last odoo and postgres db
+keywords: odoo
+type: odoo
+documentation: ''
+images:
+- name: db
+  source: postgres:latest
+  category: Database
+  type: Default
+  environment:
+  - variable: POSTGRES_USER
+    value: odoo
+  - variable: POSTGRES_PASSWORD
+    value: odoo
+- name: odoo
+  source: odoo:latest
+  category: ODOO
+  type: Default
+  ports:
+  - host_port: '8069'
+    container_port: '8069'
+    proto: TCP
+  links:
+  - service: db
+    alias: db
